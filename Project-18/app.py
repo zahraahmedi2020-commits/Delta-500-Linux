@@ -7,13 +7,11 @@ def status():
         "week":9
     }
 
-@app.route("/data/<int:id>", methods=["PUT"])
-def update_data(id):
-    data = request.json
+@app.route("/data/<int:id>", methods=["DELETE"])
+def delete_data(id):
     return {
         "id":id,
-        "updated": data,
-        "status":"updated"
+        "status":"deleted"
     } 
 
 if __name__=="__main__":
