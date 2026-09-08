@@ -1,18 +1,28 @@
 from flask import Flask, jsonify,request
 app=Flask(__name__)
-def status():
+items = [
+    {"id": 1, "name": "Server", "status": "online"},
+    {"id": 2, "name": "Router", "status": "online"}
+]
+def data():
     return{
         "status":"online",
         "project":"Delta-500",
-        "week":9
+        "week":10
     }
-
-@app.route("/data/<int:id>", methods=["DELETE"])
-def delete_data(id):
+@app.route("/data", methods=["GET"])
+def get_data():
     return {
-        "id":id,
-        "status":"deleted"
+        "items": items
     } 
+@app.route("/data", methods=["POST"])
+def receive_data():
+    data = request.json
+    items.append(data)
+    return {
+        "resived": data,
+        "status": "success"
+    }
 
 if __name__=="__main__":
     app.run(host="127.0.0.1", port=5000, debug=True)    
