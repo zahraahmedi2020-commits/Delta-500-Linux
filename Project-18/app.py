@@ -1,8 +1,30 @@
 from flask import Flask, jsonify,request
 app=Flask(__name__)
 items = [
-    {"id": 1, "name": "Server", "status": "online"},
-    {"id": 2, "name": "Router", "status": "online"}
+    {
+        "id": 1,
+        "name": "Server",
+        "status": "online",
+        "cpu": 35,
+        "memory": 45,
+        "temperature": 42
+    },
+    {
+        "id": 2,
+        "name": "Router",
+        "status": "online",
+        "cpu": 85,
+        "memory": 60,
+        "temperature": 50
+    },
+    {
+        "id": 3,
+        "name": "Switch",
+        "status": "online",
+        "cpu": 40,
+        "memory": 82,
+        "temperature": 73
+    }
 ]
 def data():
     return{
