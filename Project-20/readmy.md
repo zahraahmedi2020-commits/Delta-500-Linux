@@ -56,3 +56,17 @@ Project-20/
 ├── device_manager.py
 ├── menu.py
 └── README.md
+## Lessons Learned
+
+- Learned how to design and use Python classes and objects for network devices.
+- Learned how to use a manager class to manage a collection of device objects.
+- Learned how to separate responsibilities between the Device, DeviceManager,
+  and menu layers.
+- Learned how object references work when updating a device stored in a list.
+- Learned how to validate duplicate IP addresses before adding a device.
+- Learned how to use temporary lists for filtering without modifying the main
+  device collection.
+- Learned how to handle empty search and filter results.
+- Improved understanding of how OOP can be used as a foundation for Network
+  Automation.
+- Prepared the project structure for future real network automation using SSH.
