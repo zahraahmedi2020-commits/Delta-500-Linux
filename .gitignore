@@ -1,3 +1,10 @@
 Project-18/venv/
 Project-18 __pycache__/
-*.pyc
+
+# Python virtual environments
+venv/
+.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
