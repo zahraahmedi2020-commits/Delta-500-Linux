@@ -20,3 +20,41 @@ def evaluate_device_health(metrics):
         return "Warning"
 
     return "Healthy"
+def test_cpu_boundary(self):
+    metrics = {
+        "cpu_usage": 74,
+        "memory_usage": 40,
+        "temperature": 40,
+        "interface_status": "up"
+    }
+
+    self.assertEqual(
+        evaluate_device_health(metrics),
+        "Healthy"
+    )
+
+    metrics["cpu_usage"] = 75
+
+    self.assertEqual(
+        evaluate_device_health(metrics),
+        "Warning"
+    )
+def test_cpu_critical_boundary(self):
+    metrics = {
+        "cpu_usage": 89,
+        "memory_usage": 40,
+        "temperature": 40,
+        "interface_status": "up"
+    }
+
+    self.assertEqual(
+        evaluate_device_health(metrics),
+        "Warning"
+    )
+
+    metrics["cpu_usage"] = 90
+
+    self.assertEqual(
+        evaluate_device_health(metrics),
+        "Critical"
+    )
