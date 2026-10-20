@@ -23,30 +23,60 @@ class TestConnection(unittest.TestCase):
         mock_connection = MagicMock()
         mock_connect.return_value = mock_connection
 
-        result = connect_device(self.device)
+        with self.assertLogs("connection", level="INFO") as logs:
+            result = connect_device(self.device)
 
         self.assertIs(result, mock_connection)
         mock_connect.assert_called_once()
 
+        self.assertTrue(
+             any(
+                  "Connected to device: Router_1" in message
+                  for message in logs.output
+                 )
+        )
+
     @patch("connection.ConnectHandler")
+    
     def test_connection_timeout(self, mock_connect):
         mock_connect.side_effect = NetmikoTimeoutException(
             "Connection timed out"
         )
 
-        result = connect_device(self.device)
+        with self.assertLogs("connection", level="WARNING") as logs:
+            result = connect_device(self.device)
 
         self.assertIsNone(result)
 
+        self.assertTrue(
+            any(
+               "Connection timed out for device Router_1"
+               in message
+               for message in logs.output
+             )
+        )
+
+
+    
     @patch("connection.ConnectHandler")
     def test_authentication_failure(self, mock_connect):
         mock_connect.side_effect = NetmikoAuthenticationException(
             "Authentication failed"
         )
 
-        result = connect_device(self.device)
+        with self.assertLogs("connection", level="ERROR") as logs:
+             result = connect_device(self.device)
 
         self.assertIsNone(result)
+
+        self.assertTrue(
+            any(
+               "Authentication failed for device Router_1"
+               in message
+               for message in logs.output
+               )
+         )
+
 
 
 if __name__ == "__main__":

@@ -1,5 +1,4 @@
 Project-18/venv/
-Project-18 __pycache__/
 
 # Python virtual environments
 venv/
@@ -8,3 +7,7 @@ venv/
 # Python cache
 __pycache__/
 *.py[cod]
+
+# Project-21 log files
+Project-21/logs/
+*.log
