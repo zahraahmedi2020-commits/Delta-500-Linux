@@ -6,11 +6,18 @@
 - **Alert Management:** Generates an appropriate alert message based on the health status.
 - **Main Workflow:** Integrates device management, simulated metrics, health evaluation, and alert generation.
 
+- **SSH Connection Management:** Establishes device connections using Netmiko and handles connection timeouts, authentication failures, and unexpected errors.
+- **Logging:** Records successful connections and connection errors in `logs/project21.log` with timestamps and severity levels.
+- **Automated Connection Tests:** Uses `unittest` and mocks to test connection success, timeouts, and authentication failures without requiring physical network hardware.
+
 ## Current Limitations
 
 - Device metrics are simulated and do not represent real hardware measurements.
 - Real SSH connectivity has not yet been tested against a physical network device.
 - The initial device configuration uses Cisco IOS as the target platform.
+
+- Automated connection tests use mocks; real SSH connectivity and hardware behavior remain unverified.
+
 
 ## Run the Project
 
